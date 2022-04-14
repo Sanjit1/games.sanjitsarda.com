@@ -2,52 +2,102 @@ import Head from "next/head";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import styles from "../components/styles/15puzzle.module.css";
+import Cell from "../components/15puzzle/cell";
 
 export default function Puzzle() {
-    var matrix = [
+    var [matrix, setMatrix] = useState([
         [1, 2, 3, 4],
         [5, 6, 7, 8],
         [9, 10, 11, 12],
         [13, 14, 15, 0],
-    ];
-    var a,
-        b,
-        c,
-        d,
-        e,
-        f,
-        g,
-        h,
-        i,
-        j,
-        k,
-        l,
-        m,
-        n,
-        o,
-        p = useRef();
-    var puzzleMatrix = [
-        [a, b, c, d],
-        [e, f, g, h],
-        [i, j, k, l],
-        [m, n, o, p],
-    ];
+    ]);
+    var board = useRef();
     var canMove = true;
 
-    function updateGrid() {
-        var updatedM = [].concat(...matrix);
+    function io2(arr, val) {
+        for (var k = 0; k < arr.length; k++) {
+            for (var l = 0; l < arr[k].length; l++) {
+                if (arr[k][l] == val) {
+                    return [k, l];
+                }
+            }
+        }
+        return false;
+    }
+    function updateMatrix(dir) {
+        // Figure new matrix
+        var blankspot = io2(matrix, 0);
+        if (dir == "d") {
+            if (blankspot[0] != 0) {
+                [
+                    matrix[blankspot[0]][blankspot[1]],
+                    matrix[blankspot[0] - 1][blankspot[1]],
+                ] = [
+                    matrix[blankspot[0] - 1][blankspot[1]],
+                    matrix[blankspot[0]][blankspot[1]],
+                ];
+            }
+        }
+        if (dir == "u") {
+            if (blankspot[0] != 3) {
+                [
+                    matrix[blankspot[0]][blankspot[1]],
+                    matrix[blankspot[0] + 1][blankspot[1]],
+                ] = [
+                    matrix[blankspot[0] + 1][blankspot[1]],
+                    matrix[blankspot[0]][blankspot[1]],
+                ];
+            }
+        }
+        if (dir == "r") {
+            if (blankspot[1] != 0) {
+                [
+                    matrix[blankspot[0]][blankspot[1]],
+                    matrix[blankspot[0]][blankspot[1] - 1],
+                ] = [
+                    matrix[blankspot[0]][blankspot[1] - 1],
+                    matrix[blankspot[0]][blankspot[1]],
+                ];
+            }
+        }
+        if (dir == "l") {
+            if (blankspot[1] != 3) {
+                [
+                    matrix[blankspot[0]][blankspot[1]],
+                    matrix[blankspot[0]][blankspot[1] + 1],
+                ] = [
+                    matrix[blankspot[0]][blankspot[1] + 1],
+                    matrix[blankspot[0]][blankspot[1]],
+                ];
+            }
+        }
+        setMatrix([...matrix]);
+        console.log(matrix);
+
+        // Update all pieces
+        var order = [].concat
+            .apply([], matrix)
+            .map((z) =>
+                eval(z).current == undefined ? eval(z) : eval(z).current
+            );
+        for (var z = 0; z < 16; z++) {
+            if (order[z] != board.current.children[z]) {
+                // fix things
+                //board.current.replaceChild(board.current.children[z], order[z]);
+            }
+        }
     }
     useEffect(() => {
         const handleEsc = (event) => {
             if (canMove) {
                 if (event.key == "w" || event.key == "ArrowUp") {
-                    console.log("up");
+                    updateMatrix("u");
                 } else if (event.key == "a" || event.key == "ArrowLeft") {
-                    console.log("left");
+                    updateMatrix("l");
                 } else if (event.key == "s" || event.key == "ArrowDown") {
-                    console.log("down");
+                    updateMatrix("d");
                 } else if (event.key == "d" || event.key == "ArrowRight") {
-                    console.log("right");
+                    updateMatrix("r");
                 }
                 canMove = false;
                 setTimeout(() => {
@@ -57,10 +107,6 @@ export default function Puzzle() {
         };
         window.addEventListener("keypress", handleEsc);
         return () => window.removeEventListener("keypress", handleEsc);
-    });
-    useEffect(() => {
-        //updateGrid();
-        console.log(puzzleMatrix);
     });
 
     return (
@@ -100,117 +146,10 @@ export default function Puzzle() {
                                 </div>
                             </div>
                             <div>
-                                <div className={styles.game}>
-                                    <div
-                                        className={styles.piece}
-                                        ref={a}
-                                        id="a"
-                                    >
-                                        1
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={b}
-                                        id="b"
-                                    >
-                                        2
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={c}
-                                        id="c"
-                                    >
-                                        3
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={d}
-                                        id="d"
-                                    >
-                                        4
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={e}
-                                        id="e"
-                                    >
-                                        5
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={f}
-                                        id="f"
-                                    >
-                                        6
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={g}
-                                        id="g"
-                                    >
-                                        7
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={h}
-                                        id="h"
-                                    >
-                                        8
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={i}
-                                        id="i"
-                                    >
-                                        9
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={j}
-                                        id="j"
-                                    >
-                                        10
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={k}
-                                        id="k"
-                                    >
-                                        11
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={l}
-                                        id="l"
-                                    >
-                                        12
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={m}
-                                        id="m"
-                                    >
-                                        13
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={n}
-                                        id="n"
-                                    >
-                                        14
-                                    </div>
-                                    <div
-                                        className={styles.piece}
-                                        ref={o}
-                                        id="o"
-                                    >
-                                        15
-                                    </div>
-                                    <div
-                                        className={styles.hole}
-                                        ref={p}
-                                        id="p"
-                                    ></div>
+                                <div className={styles.game} ref={board}>
+                                    {[].concat.apply([], matrix).map((n) => (
+                                        <Cell number={n} />
+                                    ))}
                                 </div>
                             </div>
                         </div>
