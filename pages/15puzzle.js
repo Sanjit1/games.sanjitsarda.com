@@ -137,7 +137,7 @@ export default function Puzzle() {
                         </div>
                         <div className={styles.realgame}>
                             <div className={styles.menu}>
-                                <div className={styles.restart}>R+</div>
+                                <button className={styles.restart}>R+</button>
                                 <div className={styles.best}>Best Solution</div>
                                 <div className={styles.stats}>
                                     <div className={styles.time}>T</div>
