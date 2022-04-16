@@ -3,8 +3,42 @@
 .best {
   font-size: x-large;
   background: lightblue;
-  padding: 2px;
+  padding: 5px;
   margin-left: 2px;
+  font-family: 'Nova Mono', monospace;
+  border-radius: 4px;
+  margin-top: 0;
+}
+
+.restart, .best {
+  background-color: peru;
+}
+
+.restart:hover, .best:hover {
+  background-color: mediumspringgreen;
+}
+
+.stats {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin: 0;
+}
+
+.restart {
+  padding-top: 3px;
+  padding-bottom: 7px;
+}
+
+.normal,
+.blind,
+.memory,
+.size,
+.pic {
+  border-radius: 10px;
+  background: #73ad21;
+  padding: 20px;
+  margin-left: 15px;
+  font-family: 'Nova Mono', monospace;
 }
 
 .gamespace,
@@ -15,13 +49,10 @@
   display: inline-flex;
 }
 
-.menu {
-  width: 100%;
-}
-
 .restart {
   -ms-flex-item-align: start;
       align-self: flex-start;
+  border: none;
 }
 
 .best {
@@ -29,12 +60,7 @@
   -ms-flex-item-align: end;
       align-self: flex-end;
   margin-right: 5px;
-}
-
-.stats {
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  margin: 0;
+  border: none;
 }
 
 .heading {
@@ -45,8 +71,13 @@
   border: 1px;
 }
 
-.variants {
+.menu {
+  width: 100%;
   margin-bottom: 10px;
+}
+
+.variants {
+  margin-bottom: 15px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -68,7 +99,8 @@
 }
 
 .piece,
-.hole {
+.hole,
+.correct {
   border-radius: 5px;
   font-size: xxx-large;
   background: cornflowerblue;
@@ -82,10 +114,15 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-family: "Slackey", cursive;
 }
 
 .hole {
   background: darkorchid;
+}
+
+.correct {
+  background: #FFDB58;
 }
 
 @-webkit-keyframes slideInFromLeft {
@@ -110,19 +147,42 @@
   }
 }
 
-.normal,
-.blind,
-.memory,
-.size,
-.pic {
-  border-radius: 10px;
-  background: #73ad21;
-  padding: 20px;
-  margin-left: 15px;
-}
-
 .history,
 .moves {
   size: xx-large;
+}
+
+.time,
+.moven,
+.speed {
+  width: 60px;
+  font-size: medium;
+  height: 32px;
+  border: none;
+}
+
+.statsPop {
+  font-size: x-large;
+  padding: 5px;
+  margin-left: 2px;
+  font-family: 'Nova Mono', monospace;
+  border-radius: 4px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+.indivStat {
+  font-family: 'Source Code Pro', monospace;
+}
+
+.timePop,
+.movenPop,
+.speedPop {
+  font-size: medium;
+  height: 32px;
+  border: none;
 }
 /*# sourceMappingURL=15puzzle.module.css.map */

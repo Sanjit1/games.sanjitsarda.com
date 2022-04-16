@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import styles from "../components/styles/15puzzle.module.css";
+import Popup from "../components/Popup";
 import Cell from "../components/15puzzle/cell";
 
 export default function Puzzle() {
@@ -11,8 +11,21 @@ export default function Puzzle() {
         [9, 10, 11, 12],
         [13, 14, 15, 0],
     ]);
+    const solvedMatrix = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 0],
+    ];
+    var winPop = useRef();
     var board = useRef();
     var canMove = true;
+    var [
+        [time, setTime],
+        [timerActive, setTimerActive],
+        [moves, setMoves],
+        [speed, setSpeed],
+    ] = [useState(0), useState(false), useState(0), useState(0)];
 
     function io2(arr, val) {
         for (var k = 0; k < arr.length; k++) {
@@ -24,6 +37,25 @@ export default function Puzzle() {
         }
         return false;
     }
+
+    function equal(array1, array2) {
+        if (!Array.isArray(array1) && !Array.isArray(array2)) {
+            return array1 === array2;
+        }
+
+        if (array1.length !== array2.length) {
+            return false;
+        }
+
+        for (var i = 0, len = array1.length; i < len; i++) {
+            if (!equal(array1[i], array2[i])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     function updateMatrix(dir) {
         // Figure new matrix
         var blankspot = io2(matrix, 0);
@@ -36,6 +68,8 @@ export default function Puzzle() {
                     matrix[blankspot[0] - 1][blankspot[1]],
                     matrix[blankspot[0]][blankspot[1]],
                 ];
+            } else {
+                return false;
             }
         }
         if (dir == "u") {
@@ -47,6 +81,8 @@ export default function Puzzle() {
                     matrix[blankspot[0] + 1][blankspot[1]],
                     matrix[blankspot[0]][blankspot[1]],
                 ];
+            } else {
+                return false;
             }
         }
         if (dir == "r") {
@@ -58,6 +94,8 @@ export default function Puzzle() {
                     matrix[blankspot[0]][blankspot[1] - 1],
                     matrix[blankspot[0]][blankspot[1]],
                 ];
+            } else {
+                return false;
             }
         }
         if (dir == "l") {
@@ -69,10 +107,11 @@ export default function Puzzle() {
                     matrix[blankspot[0]][blankspot[1] + 1],
                     matrix[blankspot[0]][blankspot[1]],
                 ];
+            } else {
+                return false;
             }
         }
         setMatrix([...matrix]);
-        console.log(matrix);
 
         // Update all pieces
         var order = [].concat
@@ -86,28 +125,91 @@ export default function Puzzle() {
                 //board.current.replaceChild(board.current.children[z], order[z]);
             }
         }
+        return true;
     }
     useEffect(() => {
         const handleEsc = (event) => {
+            var legalMove = true;
             if (canMove) {
                 if (event.key == "w" || event.key == "ArrowUp") {
-                    updateMatrix("u");
+                    legalMove = updateMatrix("u");
                 } else if (event.key == "a" || event.key == "ArrowLeft") {
-                    updateMatrix("l");
+                    legalMove = updateMatrix("l");
                 } else if (event.key == "s" || event.key == "ArrowDown") {
-                    updateMatrix("d");
+                    legalMove = updateMatrix("d");
                 } else if (event.key == "d" || event.key == "ArrowRight") {
-                    updateMatrix("r");
+                    legalMove = updateMatrix("r");
+                } else {
+                    legalMove = false;
                 }
+
+                if (legalMove) {
+                    setMoves(moves + 1);
+                    setSpeed((moves / time).toFixed(1));
+                    if (!timerActive) {
+                        setTimerActive(true);
+                    }
+
+                    if (equal(matrix, solvedMatrix)) {
+                        setTimerActive(false);
+                        console.log(winPop.current.open());
+                    }
+                }
+
                 canMove = false;
                 setTimeout(() => {
                     canMove = true;
                 }, 10);
             }
         };
+
         window.addEventListener("keypress", handleEsc);
         return () => window.removeEventListener("keypress", handleEsc);
     });
+
+    function shuffle(e) {
+        for (let i = 1; i < 300; i++) {
+            setTimeout(function timer() {
+                updateMatrix(
+                    ["u", "d", "l", "r"][Math.floor(Math.random() * 4)]
+                );
+                updateMatrix(
+                    ["u", "d", "l", "r"][Math.floor(Math.random() * 4)]
+                );
+                updateMatrix(
+                    ["u", "d", "l", "r"][Math.floor(Math.random() * 4)]
+                );
+                updateMatrix(
+                    ["u", "d", "l", "r"][Math.floor(Math.random() * 4)]
+                );
+                updateMatrix(
+                    ["u", "d", "l", "r"][Math.floor(Math.random() * 4)]
+                );
+            }, i * 1);
+        }
+    }
+
+    function newgame() {
+        shuffle();
+        setTime(0);
+        setTimerActive(false);
+        setMoves(0);
+        setSpeed(0);
+    }
+    useEffect(newgame, [board]);
+
+    useEffect(() => {
+        var interval = null;
+        if (timerActive) {
+            interval = setInterval(() => {
+                setTime((time) => Number((time + 0.1).toFixed(1)));
+                setSpeed((moves / time).toFixed(1));
+            }, 100);
+        } else if (!timerActive && time !== 0) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [timerActive, time]);
 
     return (
         <div>
@@ -118,6 +220,26 @@ export default function Puzzle() {
                     content="initial-scale=1.0, width=device-width"
                 />
             </Head>
+
+            <Popup ref={winPop}>
+                {" "}
+                <div className={styles.statsPop}>
+                    <div className={styles.timePop}>
+                        T{" "}
+                        <div className={styles.indivStat}>
+                            {time}
+                            {"s"}
+                        </div>
+                    </div>
+                    <div className={styles.movenPop}>
+                        M <div className={styles.indivStat}>{moves}</div>
+                    </div>
+                    <div className={styles.speedPop}>
+                        S <div className={styles.indivStat}>{speed}</div>
+                    </div>
+                </div>
+                <button></button>
+            </Popup>
 
             <center>
                 <h1>15 Puzzle</h1>
@@ -137,18 +259,48 @@ export default function Puzzle() {
                         </div>
                         <div className={styles.realgame}>
                             <div className={styles.menu}>
-                                <button className={styles.restart}>R+</button>
-                                <div className={styles.best}>Best Solution</div>
+                                <button
+                                    onClick={newgame}
+                                    className={styles.restart}
+                                >
+                                    new
+                                </button>
+
+                                <button className={styles.best}>
+                                    best solution
+                                </button>
                                 <div className={styles.stats}>
-                                    <div className={styles.time}>T</div>
-                                    <div className={styles.moves}>M</div>
-                                    <div className={styles.speed}>S</div>
+                                    <div className={styles.time}>
+                                        T{" "}
+                                        <div className={styles.indivStat}>
+                                            {time}
+                                            {"s"}
+                                        </div>
+                                    </div>
+                                    <div className={styles.moven}>
+                                        M{" "}
+                                        <div className={styles.indivStat}>
+                                            {moves}
+                                        </div>
+                                    </div>
+                                    <div className={styles.speed}>
+                                        S{" "}
+                                        <div className={styles.indivStat}>
+                                            {speed}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>
                                 <div className={styles.game} ref={board}>
-                                    {[].concat.apply([], matrix).map((n) => (
-                                        <Cell number={n} />
+                                    {[...Array(16).keys()].map((n) => (
+                                        <Cell
+                                            number={
+                                                [].concat.apply([], matrix)[n]
+                                            }
+                                            key={n}
+                                            frog={n}
+                                        />
                                     ))}
                                 </div>
                             </div>

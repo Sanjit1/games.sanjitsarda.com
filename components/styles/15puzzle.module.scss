@@ -3,30 +3,60 @@
 .best {
     font-size: x-large;
     background: lightblue;
-    padding: 2px;
+    padding: 5px;
     margin-left: 2px;
+    font-family: 'Nova Mono', monospace;
+    border-radius: 4px;
+    margin-top: 0;
+
 }
+.restart, .best{
+    background-color: peru;
+    &:hover{
+        background-color: mediumspringgreen;
+    }
+}
+ 
+.stats {
+    align-self: flex-start;
+    margin: 0;
+}
+
+.restart{
+    padding-top: 3px;
+    padding-bottom: 7px;
+}
+
+.normal,
+.blind,
+.memory,
+.size,
+.pic {
+    border-radius: 10px;
+    background: #73ad21;
+    padding: 20px;
+    margin-left: 15px;
+    font-family: 'Nova Mono', monospace;
+}
+
+
+
 .gamespace,
 .menu,
 .stats {
     display: inline-flex;
 }
 
-.menu {
-    width: 100%;
-}
 .restart {
     align-self: flex-start;
+    border: none;
 }
 
 .best {
     margin: auto;
     align-self: flex-end;
     margin-right: 5px;
-}
-.stats {
-    align-self: flex-start;
-    margin: 0;
+    border: none;
 }
 
 
@@ -36,8 +66,13 @@
 .space {
     border: 1px;
 }
-.variants {
+
+.menu {
+    width: 100%;
     margin-bottom: 10px;
+}
+.variants {
+    margin-bottom: 15px;
     display: inline-flex;
     min-width: 0;
     min-height: 0;
@@ -54,7 +89,8 @@
 }
 
 .piece,
-.hole {
+.hole,
+.correct {
     border-radius: 5px;
     font-size: xxx-large;
     background: cornflowerblue;
@@ -64,10 +100,15 @@
     text-align: center;
     justify-content: center;
     display: flex;
+    font-family: "Slackey", cursive;
 }
 
 .hole {
     background: darkorchid;
+}
+
+.correct{
+    background: #FFDB58;
 }
 
 .piece {
@@ -81,18 +122,42 @@
     }
 }
 
-.normal,
-.blind,
-.memory,
-.size,
-.pic {
-    border-radius: 10px;
-    background: #73ad21;
-    padding: 20px;
-    margin-left: 15px;
-}
 
 .history,
 .moves {
     size: xx-large;
+}
+
+.time,
+.moven,
+.speed {
+    width: 60px;
+    font-size: medium;
+    height: 32px;
+    border: none;
+}
+
+
+.statsPop{
+    font-size: x-large;
+    padding: 5px;
+    margin-left: 2px;
+    font-family: 'Nova Mono', monospace;
+    border-radius: 4px;   
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+}
+
+.indivStat{
+    font-family: 'Source Code Pro', monospace;
+}
+
+.timePop,
+.movenPop,
+.speedPop {
+    font-size: medium;
+    height: 32px;
+    border: none;
+
 }
