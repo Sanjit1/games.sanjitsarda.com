@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Nova+Mono&family=Nova+Round&family=Slackey&family=Source+Code+Pro:wght@600&family=Special+Elite&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Inconsolata&family=Nova+Mono&family=Nova+Round&family=Slackey&family=Source+Code+Pro:wght@600&family=Special+Elite&display=swap");
 
 body {
     background: #f2f2f2;
@@ -36,11 +36,26 @@ nav {
         span > img {
             float: right;
         }
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
+        -ms-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
     }
     :hover {
-        //color: rgb(255, 251, 0);
+        -webkit-transition: all 0.2s ease-in;
+        -moz-transition: all 0.2s ease-in;
+        -o-transition: all 0.2s ease-in;
+        -ms-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
+        color: #fee61a;
     }
     a.nav-home:hover {
+        -webkit-transition: all 0.2s ease-in;
+        -moz-transition: all 0.2s ease-in;
+        -o-transition: all 0.2s ease-in;
+        -ms-transition: all 0.2s ease-in;
+        transition: all 0.2s ease-in;
         .cls-1 {
             fill: #fffe10;
         }
@@ -62,6 +77,11 @@ nav {
     .cls-6 {
         stroke: #000;
         stroke-miterlimit: 10;
+        -webkit-transition: all 0.2s ease-out;
+        -moz-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
+        -ms-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
     }
     .cls-2 {
         fill: #00bd00;
@@ -114,4 +134,22 @@ main {
 .far {
     margin-right: 5px;
     vertical-align: middle;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #a8bbbf;
+    border-radius: 20px;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #d8cbdf;
 }

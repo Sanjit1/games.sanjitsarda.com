@@ -1,28 +1,52 @@
 .restart,
 .stats,
-.best {
+.best,
+.popupButton {
     font-size: x-large;
     background: lightblue;
     padding: 5px;
     margin-left: 2px;
-    font-family: 'Nova Mono', monospace;
+    font-family: "Nova Mono", monospace;
     border-radius: 4px;
     margin-top: 0;
-
 }
-.restart, .best{
+
+.popupButton {
+    font-size: large;
+    border: none;
+    background: #68bbe3;
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    -ms-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    &:hover {
+        background-color: #75e6da;
+    }
+}
+
+.restart,
+.best {
     background-color: peru;
-    &:hover{
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    -ms-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+
+    &:hover {
         background-color: mediumspringgreen;
     }
 }
- 
+
 .stats {
     align-self: flex-start;
     margin: 0;
+    padding-top: 0px;
+    padding-bottom: 10px;
 }
 
-.restart{
+.restart {
     padding-top: 3px;
     padding-bottom: 7px;
 }
@@ -33,13 +57,23 @@
 .size,
 .pic {
     border-radius: 10px;
+    border: none;
     background: #73ad21;
-    padding: 20px;
-    margin-left: 15px;
-    font-family: 'Nova Mono', monospace;
+    padding: 5px;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    font-family: "Nova Mono", monospace;
+    font-size: 22px;
+
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    -ms-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    &:hover {
+        background-color: mediumspringgreen;
+    }
 }
-
-
 
 .gamespace,
 .menu,
@@ -58,7 +92,6 @@
     margin-right: 5px;
     border: none;
 }
-
 
 .heading {
     margin: 0;
@@ -93,7 +126,8 @@
 .correct {
     border-radius: 5px;
     font-size: xxx-large;
-    background: cornflowerblue;
+    font-size: 54px;
+    background: #18bff6;
     margin: 5px;
     line-height: 100px;
     width: 100px;
@@ -101,56 +135,168 @@
     justify-content: center;
     display: flex;
     font-family: "Slackey", cursive;
+    text-shadow: 2px 5px #fac12f88;
 }
 
 .hole {
     background: darkorchid;
 }
 
-.correct{
-    background: #FFDB58;
+.correct {
+    background: #eca45d;
 }
 
-.piece {
-    @keyframes slideInFromLeft {
+.piece,
+.correct {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    animation: piece 0.5s 1;
+    @keyframes piece {
         0% {
-            transform: translateX(-100%);
+            transform: scale(1);
+            background: #fec8a7;
+        }
+        16% {
+            transform: scale(0.9);
+        }
+        33% {
+            transform: scale(1.11);
+        }
+        50% {
+            transform: scale(1);
+        }
+        66% {
+            transform: scale(0.92);
+        }
+        83% {
+            transform: scale(1.06);
         }
         100% {
-            transform: translateX(0);
+            transform: scale(1);
         }
     }
 }
 
-
 .history,
-.moves {
+.moves,
+.pressedKeys,
+.level {
     size: xx-large;
+    margin: 0px 15px;
+}
+
+.pressedKeys {
+    width: 210px;
+}
+.history {
+    width: 150px;
+    ::-webkit-scrollbar-thumb {
+        background-color: #a8bbbf11;
+        &:hover {
+            background-color: #d8cbdf;
+        }
+    }
+}
+
+.moves {
+    width: 100px;
+}
+
+.level {
+    width: 250px;
+}
+
+.keyHolder {
+    padding: 60% 0;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.key,
+.pressed {
+    width: 60px;
+    margin: 4px 4px;
+    height: 60px;
+    background-color: #eca45d;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    line-height: 60px;
+    font-family: "Nutino", sans-serif;
+    font: bold;
+
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.key {
+    animation: press 0.1s 1;
+    @keyframes press {
+        0% {
+            background: #58cfff;
+        }
+        100% {
+            background: #eca45d;
+        }
+    }
 }
 
 .time,
 .moven,
 .speed {
-    width: 60px;
+    width: 55px;
     font-size: medium;
     height: 32px;
     border: none;
 }
 
-
-.statsPop{
+.movelog,
+.logs {
+    height: 469px;
+    overflow-y: scroll;
+}
+.statsPop {
     font-size: x-large;
     padding: 5px;
     margin-left: 2px;
-    font-family: 'Nova Mono', monospace;
-    border-radius: 4px;   
+    font-family: "Nova Mono", monospace;
+    border-radius: 4px;
     display: grid;
     grid-template-columns: auto auto auto;
     text-align: center;
 }
 
-.indivStat{
-    font-family: 'Source Code Pro', monospace;
+.easy,
+.nse,
+.med,
+.hard,
+.tooHard {
+    border-radius: 10px;
+    border: none;
+    background: #a49393;
+    padding: 7.5px 15px;
+    margin: 5px 15px;
+    font-family: "Nova Mono", monospace;
+    font-size: 18px;
+
+    -webkit-transition: all 0.1s ease-in;
+    -moz-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    -ms-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    &:hover {
+        background-color: #eed6d3;
+    }
+}
+.indivStat {
+    font-family: "Source Code Pro", monospace;
 }
 
 .timePop,
@@ -159,5 +305,15 @@
     font-size: medium;
     height: 32px;
     border: none;
+}
 
+.statsLog {
+    font-size: 13px;
+}
+
+.logEntry {
+    background-color: #18bff6;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px 0px;
 }

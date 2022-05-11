@@ -24,28 +24,4 @@
 .child {
   padding: 10px;
 }
-
-.fadeIn {
-  opacity: 1;
-  -webkit-transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
-  transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
-}
-
-.fadeIn > * {
-  opacity: 1;
-  -webkit-transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
-  transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
-}
-
-.fadeOut {
-  opacity: 0;
-  -webkit-transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
-  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
-}
-
-.fadeOut > * {
-  opacity: 0;
-  -webkit-transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
-  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
-}
 /*# sourceMappingURL=Popup.module.css.map */

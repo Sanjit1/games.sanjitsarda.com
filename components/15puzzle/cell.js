@@ -6,8 +6,6 @@ export default function Cell({ number, frog }) {
     if (number == frog + 1) {
         style = styles.correct;
     }
-    useEffect(() => {
-        //console.log(show);
-    }, [number]);
+    useEffect(() => {}, [show]);
     return <div className={style}>{show}</div>;
 }
