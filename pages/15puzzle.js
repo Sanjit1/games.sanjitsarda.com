@@ -653,11 +653,15 @@ export default function Puzzle() {
             <center>
                 <br />
                 <br />
-                This game was made with heavy inspiration from{" "}
-                <Link href="15puzzle.netlify.app">
+                <Link href="https://www.speedsolving.com/wiki/index.php/15_puzzle">
                     <a className="normal">
-                        <i>this game</i>
+                        Try this link for a quick tutorial(or use google).
                     </a>
+                </Link>
+                <br />
+                This game was made with heavy inspiration from{" "}
+                <Link href="https://15puzzle.netlify.app">
+                    <a className="normal">this game</a>
                 </Link>
                 , made by Shubmam Singh.
                 <br />
@@ -665,7 +669,10 @@ export default function Puzzle() {
                 other stuff to it.
                 <br />
                 *Feature not available(yet!). Feel free to add a pull request
-                implementing these features here.
+                implementing these features{" "}
+                <Link href="https://github.com/Sanjit1/games.sanjitsarda.com">
+                    <a className="normal">here.</a>
+                </Link>
             </center>
         </div>
     );
