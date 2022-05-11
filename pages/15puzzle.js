@@ -479,7 +479,14 @@ export default function Puzzle() {
                             <div className={styles.logs}>
                                 {logs.map((game) => {
                                     return (
-                                        <div className={styles.logEntry}>
+                                        <div
+                                            className={styles.logEntry}
+                                            key={
+                                                game.speed +
+                                                game.time +
+                                                game.moves
+                                            }
+                                        >
                                             {game.level
                                                 .charAt(0)
                                                 .toUpperCase() +
@@ -554,7 +561,7 @@ export default function Puzzle() {
                                 {Array.from(Array(moveList.length).keys()).map(
                                     (index) => {
                                         return (
-                                            <div>
+                                            <div key={index}>
                                                 <b>{index + 1}.</b>{" "}
                                                 {moveList[index]}
                                             </div>
