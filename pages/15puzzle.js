@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import styles from "../components/styles/15puzzle.module.css";
+import styles from "../components/styles/15puzzle.module.scss";
 import Popup from "../components/Popup";
 import Cell from "../components/15puzzle/cell";
 

@@ -1,7 +1,8 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Head from "next/head";
-import Script from "next/script";
+import CookieConsent from "react-cookie-consent";
+import styles from "./styles/Layout.module.scss";
 
 export default function Layout({ children }) {
     return (
@@ -15,10 +16,27 @@ export default function Layout({ children }) {
                     crossOrigin="anonymous"
                 />
             </Head>
-            <Script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></Script>
 
             <main>{children}</main>
             <Footer />
+            <CookieConsent
+                buttonText="Yuhh"
+                style={{
+                    background: "#003fae",
+                    borderRadius: "10px",
+                    margin: "5px",
+                    width: "auto",
+                    right: 0,
+                }}
+                buttonClasses={styles.accept}
+                expires={150}
+                acceptOnScroll={true}
+                acceptOnScrollPercentage={30}
+                acceptOnOverlayClick={true}
+            >
+                This website uses cookies. By continuing you are accepting said
+                cookies. And before you ask, no they do not taste good.
+            </CookieConsent>
         </div>
     );
 }

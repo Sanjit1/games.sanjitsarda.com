@@ -1,5 +1,5 @@
 import { useState, Component } from "react";
-import styles from "./styles/Popup.module.css";
+import styles from "./styles/Popup.module.scss";
 
 class Popup extends Component {
     constructor(props) {
