@@ -3,50 +3,50 @@ import styles from "./styles/Footer.module.scss";
 
 const Footer = () => {
     return (
-        <footer>
-            <div className="footer-container">
-                <div className="footer-left">
+        <footer className={styles.footer}>
+            <div className={styles.footer_container}>
+                <div className={styles.footer_left}>
                     <h2>Menu</h2>
                     <p>
-                        <Link href="https://sanjitsarda.com/about">
+                        <Link href="/about">
                             <a>About</a>
                         </Link>
                     </p>
                     <p>
-                        <Link href="https://sanjitsarda.com/portfolio">
+                        <Link href="/portfolio">
                             <a>Portfolio</a>
                         </Link>
                     </p>
                     <p>
-                        <Link href="/">
+                        <Link href="https://games.sanjitsarda.com">
                             <a>Games</a>
                         </Link>
                     </p>
                     <p>
-                        <Link href="https://sanjitsarda.com/imnotreadyyetlol">
+                        <Link href="/imnotreadyyetlol">
                             <a>Tools</a>
                         </Link>
                     </p>
                 </div>
-                <div className="footer-middle">
+                <div className={styles.footer_middle}>
                     <h2>Legal</h2>
                     <p>
-                        <Link href="https://sanjitsarda.com/privacy">
+                        <Link href="/privacy">
                             <a>Privacy Policy</a>
                         </Link>
                     </p>
                     <p>
-                        <Link href="https://sanjitsarda.com/tos">
+                        <Link href="/tos">
                             <a>Terms and Conditions</a>
                         </Link>
                     </p>
                     <p>
-                        <Link href="https://sanjitsarda.com/fish">
+                        <Link href="/fish">
                             <a>Fish</a>
                         </Link>
                     </p>
                 </div>
-                <div className="footer-right">
+                <div className={styles.footer_right}>
                     <h2>Contact</h2>
                     <Link href="mailto:sanjitsarda4@gmail.com">
                         <a>
@@ -57,7 +57,7 @@ const Footer = () => {
                     <br />
                     <br />
                     <br />
-                    <div className="icon-container">
+                    <div className={styles.icon_container}>
                         <Link href="https://www.linkedin.com/in/sanjitsarda/">
                             <a>
                                 <i className="fab fa-linkedin-in fa-2x"></i>

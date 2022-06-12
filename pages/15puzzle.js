@@ -364,9 +364,14 @@ export default function Puzzle() {
         <div>
             <Head>
                 <title>15 Puzzle</title>
+                <meta name="robots" content="index, follow" />
                 <meta
                     name="viewport"
                     content="initial-scale=1.0, width=device-width"
+                />
+                <meta
+                    name="description"
+                    content="Sanjit Sarda's 15 puzzle. Play 15 puzzle and variants. Stock, Blind, Memory in different levels: easy, medium, hard, very hard, etc."
                 />
             </Head>
             <Popup ref={winPop}>
